@@ -1,0 +1,26 @@
+/*= require_tree .
+/*= require_self
+
+/**/   
+@import "bootstrap-sprockets" ;
+@import "bootstrap" ;
+
+
+
+
+.navbar-brand{
+	color:white;
+	font-size:32px;
+	margin:0 auto;
+	text-align: center;
+}
+
+.navbar-nav{
+	float:right;
+	display:inline-block;
+	font-size:18px;
+}
+.active{
+	color:#b2ffff;
+}
+

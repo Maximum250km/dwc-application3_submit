@@ -1,0 +1,76 @@
+
+
+<%= flash[:success] %>
+
+<div class="container">
+  <div class="col-xs-3">
+
+
+
+    <table class='table'>
+      <h1> User info</h1>
+  <tr><%= attachment_image_tag @user, :profile_image, :fill, 50, 50, fallback:"no_image.png",size: :"50x50" %></tr>
+     <tr>
+        <th>name</th>
+        <th><%= @user.name  %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= @user.introduction %></th>
+      </tr>
+</table>
+
+
+
+
+<div class="row">
+<%= link_to edit_user_path(@user) do %> 
+<span class="col-xs-12 btn btn-default glyphicon glyphicon-wrench"></span>
+<% end %>
+</div>
+
+<%= form_for(@book_new) do |f| %>
+<h3>New Book</h3>
+<%= f.text_field :title %>
+<h4>Opinion</h4>
+<%= f.text_area :body %>
+
+
+<%= f.submit  'Create Books' %>
+<% end %>
+
+<% if @book_new.errors.any? %>
+   <p> can't be blank !! or Over 200texts !!</p>
+<% end %>
+   </div>
+
+<h1></h1>
+
+<div class="col-xs-9">
+<h2>Books</h2>
+   <table class="table table-striped">
+   <thead>
+   	<tr>
+    <th> </th>
+ 		<th>Title</th>
+ 		<th>Opinion</th>
+    </tr>
+</thead>
+ <tbody>
+
+	  <tr>
+	  <% @books.each do |book| %>
+    <td><%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, fallback: "no_image.png", size: :"20x20" %></td>
+     <td><%= link_to book_path(book) do %>
+    <%= book.title %>  </td>
+     <% end %>
+    <td><%= book.body %></td>
+</tr>
+ <% end %>
+ </tbody>
+</table>
+</div>
+</div>
+</div>
+
+

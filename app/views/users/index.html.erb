@@ -1,0 +1,54 @@
+
+
+<div class="container">
+    <div class="row">
+    <div class="col-xs-3">
+
+ <%= render 'books/profile', user: @user %>
+
+ <div class="row">
+<%= link_to edit_user_path(current_user) do %> 
+<span class="col-xs-12 btn btn-default glyphicon glyphicon-wrench"></span>
+<% end %>
+</div>
+
+<%= form_for(@book) do |f| %>
+<h3>New Book</h3>
+<%= f.text_field :title %>
+<h4>Opinion</h4>
+<%= f.text_area :body %>
+
+
+<%= f.submit  'Create Books' %>
+<% end %>
+
+<% if @book.errors.any? %>
+   <p> can't be blank !! or Over 200texts !!</p>
+<% end %>
+</div>
+
+
+<div class="col-xs-9">
+ <h2>Users Info</h2>
+  <p></p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+    <th>image</th>
+    <th>user</th>
+    </tr>
+</thead>
+
+ <tbody>
+ 	<% @user_all.each do |user| %>
+	  <tr>
+     <td><%= attachment_image_tag user, :profile_image, size:'20x20', fallback:"no_image.png" %></td>
+    <td><%= user.name %></td>
+      <td><%= link_to "show", user_path(user.id) %></td>
+ 	  </tr>
+     <% end %>
+ </tbody>
+</table>
+</div>
+</div>
+</div>

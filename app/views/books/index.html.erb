@@ -1,0 +1,60 @@
+
+<div class="container">
+  <div class="row">
+   <div class="col-xs-3">
+    <%= render 'books/profile', user: @user %>
+
+<div class="row">
+<%= link_to edit_user_path(current_user) do %> 
+<span class="col-xs-12 btn btn-default glyphicon glyphicon-wrench"></span>
+<% end %>
+</div>
+
+
+<%= form_for(@book) do |f| %>
+<% if @book.errors.any? %>
+  <ul>
+    <% @book.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+
+<% end %>
+<h3>New Book</h3>
+<%= f.text_field :title %>
+<h4>Opinion</h4>
+<%= f.text_area :body %>
+<%= f.submit  'Create Books' %>
+<% end %>
+
+ </div>
+
+
+
+
+<div class="col-xs-9">
+  <h2>Books</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+    <th></th>
+ 		<th>title</th>
+ 		<th>opinion</th>
+    </tr>
+</thead>
+
+ <tbody>
+ 	<% @book_all.each do |i| %>
+	  <tr>
+    <td><%= attachment_image_tag i.user, :profile_image, :fill, 20, 20, fallback:"no_image.png",size:'20x20' %></td>
+    <td><%= link_to i.title, book_path(i.id)%></td>
+    <td><%= i.body %></td>
+
+ 	  </tr>
+     <% end %>
+ </tbody>
+</table>
+</div>
+</div>
+</div>
